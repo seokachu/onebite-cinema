@@ -1,4 +1,4 @@
-import SearchableLayout from "@/components/search/searchable-layout";
+import SearchableLayout from "@/components/search/SearchableLayout";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
