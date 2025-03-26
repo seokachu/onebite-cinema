@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import style from "./searchable-layout.module.css";
+import globalStyle from "../global-layout.module.css";
 
 export default function SearchableLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [search, setSearch] = useState("");
   const router = useRouter();
+  const [search, setSearch] = useState("");
   const q = router.query.q as string;
 
   useEffect(() => {
@@ -32,12 +33,15 @@ export default function SearchableLayout({
     <div>
       <form onSubmit={onSubmit}>
         <div className={style.search_inner}>
-          <input
-            type="text"
-            value={search}
-            onChange={onChangeSearch}
-            placeholder="검색어를 입력해 주세요."
-          />
+          <label>
+            <span className={globalStyle.visually_hidden}>영화제목 검색</span>
+            <input
+              type="text"
+              value={search}
+              onChange={onChangeSearch}
+              placeholder="검색어를 입력해 주세요."
+            />
+          </label>
           <button type="submit">검색</button>
         </div>
       </form>
