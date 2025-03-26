@@ -1,0 +1,17 @@
+.search_inner {
+  display: flex;
+  gap: 10px;
+}
+
+.search_inner input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.search_inner button {
+  width: 80px;
+  border-radius: 5px;
+  background-color: gray;
+}
