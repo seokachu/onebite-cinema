@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import movieData from "@/mock/dummy.json";
 import Image from "next/image";
+import style from "./[id].module.css";
 
 export default function Page() {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function Page() {
   const movieId = parseInt(id as string);
   const movie = movieData.find((item) => item.id === movieId);
 
-  if (!movie) return <div>영화를 찾을 수 없습니다...</div>;
+  if (!movie) return <div>영화를 찾을 수 없습니다🥲</div>;
 
   const {
     posterImgUrl,
@@ -24,18 +25,23 @@ export default function Page() {
 
   return (
     <section>
-      <div>
+      <div
+        className={style.img_inner}
+        style={{ backgroundImage: `url('${posterImgUrl}')` }}
+      >
         <Image src={posterImgUrl} alt={title} width={300} height={300} />
       </div>
-      <h2>{title}</h2>
-      <div>
-        <span>{releaseDate}</span>
-        <span>{genres.join(", ")}</span>
-        <span>{runtime}분</span>
-        <p>{company}</p>
+      <div className={style.movie_info}>
+        <h2 className={style.title}>{title}</h2>
+        <ul className={style.info_list}>
+          <li>{releaseDate}</li>
+          <li>{genres.join(", ")}</li>
+          <li>{runtime}분</li>
+        </ul>
+        <p className={style.company}>{company}</p>
       </div>
-      <div>
-        <h3>{subTitle}</h3>
+      <div className={style.movie_description}>
+        {subTitle && <h3>&ldquo;{subTitle}&rdquo;</h3>}
         <p>{description}</p>
       </div>
     </section>

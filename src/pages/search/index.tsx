@@ -2,9 +2,10 @@ import SearchableLayout from "@/components/layout/SearchableLayout";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import movieData from "@/mock/dummy.json";
-import type { MovieData } from "@/types";
 import RecommendedMoviesListItem from "@/components/RecommendedMoviesListItem";
 import style from "../../components/recommended-movies-list.module.css";
+import type { MovieData } from "@/types";
+import globalStyle from "../../components/layout/global-layout.module.css";
 
 export default function Page() {
   const { query } = useRouter();
@@ -24,7 +25,7 @@ export default function Page() {
   }, [q]);
 
   return (
-    <>
+    <div className={globalStyle.container}>
       {search.length > 0 ? (
         <ul className={style.recommend_list}>
           {search.map((item) => (
@@ -34,7 +35,7 @@ export default function Page() {
       ) : (
         <div>검색 결과가 없습니다.</div>
       )}
-    </>
+    </div>
   );
 }
 
