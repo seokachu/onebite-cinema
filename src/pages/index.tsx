@@ -1,8 +1,15 @@
+import AllMoviesList from "@/components/AllMoviesList";
 import SearchableLayout from "@/components/layout/SearchableLayout";
+import RecommendedMoviesList from "@/components/RecommendedMoviesList";
 import { ReactNode } from "react";
 
 export default function Home() {
-  return <section style={{ marginTop: "15px" }}>메인 섹션 페이지</section>;
+  return (
+    <>
+      <RecommendedMoviesList />
+      <AllMoviesList />
+    </>
+  );
 }
 
 Home.getLayout = (page: ReactNode) => {

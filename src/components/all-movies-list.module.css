@@ -1,0 +1,30 @@
+.title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.all_movie_list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+
+.all_movie_list li {
+  width: calc(20% - 10px);
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.all_movie_list li img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: .3s ease-out;
+}
+
+.all_movie_list li img:hover {
+  transform: scale(1.1);
+}

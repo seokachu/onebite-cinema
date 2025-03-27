@@ -3,11 +3,15 @@
   gap: 10px;
 }
 
-.search_inner input {
+.search_inner label {
   flex: 1;
+}
+
+.search_inner input {
   padding: 15px;
   border-radius: 5px;
   border: 1px solid gray;
+  width: 100%;
 }
 
 .search_inner button {

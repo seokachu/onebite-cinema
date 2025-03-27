@@ -12,6 +12,10 @@
   flex: 1;
 }
 
+.container {
+  padding: 40px 0;
+}
+
 /*----------- HEADER ------------*/
 .header {
   padding: 20px 0;
