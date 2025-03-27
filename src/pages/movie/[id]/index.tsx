@@ -26,12 +26,12 @@ export default function Page() {
   } = movie;
 
   return (
-    <section>
+    <section className={style.container}>
       <div
         className={style.img_inner}
         style={{ backgroundImage: `url('${posterImgUrl}')` }}
       >
-        <Image src={posterImgUrl} alt={title} width={300} height={300} />
+        <Image src={posterImgUrl} alt={title} width={300} height={450} />
       </div>
       <div className={style.movie_info}>
         <h2 className={style.title}>{title}</h2>

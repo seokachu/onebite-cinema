@@ -1,3 +1,7 @@
+.container {
+  padding: 0 0 108px;
+}
+
 .img_inner {
   display: flex;
   justify-content: center;
@@ -39,12 +43,27 @@
 
 .movie_info .info_list {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 
 .movie_info .info_list li {
   color: rgba(255, 255, 255, .7);
+  position: relative;
+}
+
+.movie_info .info_list li::after {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, .7);
+  left: calc(100% + 7px);
+  top: 1px;
+}
+
+.movie_info .info_list li:last-child::after {
+  display: none;
 }
 
 .company {
