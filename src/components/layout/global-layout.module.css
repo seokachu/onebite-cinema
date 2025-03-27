@@ -68,3 +68,13 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/*----------- EMPTY -----------*/
+.empty {
+  font-size: 1.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  min-height: 300px;
+}

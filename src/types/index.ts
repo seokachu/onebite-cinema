@@ -17,10 +17,6 @@ export interface MovieData {
   posterImgUrl: string;
 }
 
-export interface RecommendedMoviesListItemProps {
-  item: MovieData;
-}
-
-export interface AllMoviesListItemProps {
+export interface MoviesListItemProps {
   item: MovieData;
 }

@@ -15,10 +15,15 @@
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.all_movie_list li img {
+.all_movie_list li a,
+.recommend_list li a {
+  display: block;
+}
+
+.all_movie_list li img,
+.recommend_list li img {
   display: block;
   width: 100%;
   height: auto;
@@ -26,6 +31,20 @@
   transition: .3s ease-out;
 }
 
-.all_movie_list li img:hover {
+.all_movie_list li img:hover,
+.recommend_list li img:hover {
   transform: scale(1.1);
+}
+
+.recommend_list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.recommend_list li {
+  width: calc(33.3% - 20px);
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 5px;
 }
