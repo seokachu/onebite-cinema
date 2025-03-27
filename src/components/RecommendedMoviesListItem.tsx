@@ -14,7 +14,7 @@ export default function RecommendedMoviesListItem({
 
   return (
     <li onClick={onClickDetail}>
-      <Image src={posterImgUrl} alt={title} width={300} height={300} />
+      <Image src={posterImgUrl} alt={title} width={300} height={450} />
     </li>
   );
 }
