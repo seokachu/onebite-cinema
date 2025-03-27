@@ -1,5 +1,5 @@
 import Link from "next/link";
-import style from "../global-layout.module.css";
+import style from "../components/layout/global-layout.module.css";
 
 export default function Header() {
   return (

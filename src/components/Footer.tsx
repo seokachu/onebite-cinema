@@ -1,4 +1,4 @@
-import style from "../global-layout.module.css";
+import style from "../components/layout/global-layout.module.css";
 
 export default function Footer() {
   return (
