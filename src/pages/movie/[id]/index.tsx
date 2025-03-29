@@ -1,27 +1,10 @@
 import Image from "next/image";
 import globalStyle from "../../../components/layout/global-layout.module.css";
 import style from "./[id].module.css";
-import fetchOneMovie from "@/lib/fetch-one-movies";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
+import { getMovieDetailProps } from "@/lib/get-movie-detail-props";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const id = context.params!.id;
-  const movie = await fetchOneMovie(Number(id));
-
-  if (!movie) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      movie,
-    },
-  };
-};
+export const getServerSideProps = getMovieDetailProps;
 
 export default function Page({
   movie,

@@ -1,34 +1,21 @@
 import SearchableLayout from "@/components/layout/SearchableLayout";
-import { useRouter } from "next/router";
-import { ReactNode, useEffect, useState } from "react";
-import movieData from "@/mock/dummy.json";
+import { ReactNode } from "react";
 import MoviesListItem from "@/components/MoviesListItem";
 import style from "../../components/movies-list.module.css";
 import globalStyle from "../../components/layout/global-layout.module.css";
-import type { MovieData } from "@/types";
+import { InferGetServerSidePropsType } from "next";
+import { getSearchProps } from "@/lib/get-search-props";
 
-export default function Page() {
-  const { query } = useRouter();
-  const { q } = query;
-  const [search, setSearch] = useState<MovieData[]>([]);
+export const getServerSideProps = getSearchProps;
 
-  useEffect(() => {
-    if (q) {
-      const searchResult = String(q).toLowerCase().trim();
-      const movie = movieData.filter((item) =>
-        item.title.toLowerCase().includes(searchResult)
-      );
-      setSearch(movie);
-    } else {
-      setSearch([]);
-    }
-  }, [q]);
-
+export default function Page({
+  movies,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className={globalStyle.container}>
-      {search.length > 0 ? (
+      {movies.length > 0 ? (
         <ul className={style.recommend_list}>
-          {search.map((item) => (
+          {movies.map((item) => (
             <MoviesListItem key={item.id} item={item} />
           ))}
         </ul>
