@@ -1,20 +1,37 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
-import movieData from "@/mock/dummy.json";
 import globalStyle from "../../../components/layout/global-layout.module.css";
 import style from "./[id].module.css";
+import fetchOneMovie from "@/lib/fetch-one-movies";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
-export const getServerSideProps = async () => {};
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const id = context.params!.id;
+  const movie = await fetchOneMovie(Number(id));
 
-export default function Page() {
-  const router = useRouter();
-  const { id } = router.query;
+  if (!movie) {
+    return {
+      notFound: true,
+    };
+  }
 
-  const movieId = parseInt(id as string);
-  const movie = movieData.find((item) => item.id === movieId);
+  return {
+    props: {
+      movie,
+    },
+  };
+};
 
+export default function Page({
+  movie,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (!movie)
-    return <h3 className={globalStyle.empty}>영화를 찾을 수 없습니다🥲</h3>;
+    return (
+      <h3 className={globalStyle.empty}>
+        문제가 발생했습니다. 다시 시도해 주세요🥲
+      </h3>
+    );
 
   const {
     posterImgUrl,
