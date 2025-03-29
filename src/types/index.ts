@@ -20,3 +20,7 @@ export interface MovieData {
 export interface MoviesListItemProps {
   item: MovieData;
 }
+
+export interface MoviesListProps {
+  movies: MovieData[];
+}

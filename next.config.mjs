@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["media.themoviedb.org"],
+    domains: ["media.themoviedb.org", "search.pstatic.net"],
   },
 };
 

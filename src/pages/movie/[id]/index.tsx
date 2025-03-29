@@ -4,6 +4,8 @@ import movieData from "@/mock/dummy.json";
 import globalStyle from "../../../components/layout/global-layout.module.css";
 import style from "./[id].module.css";
 
+export const getServerSideProps = async () => {};
+
 export default function Page() {
   const router = useRouter();
   const { id } = router.query;
