@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["search.pstatic.net", "media.themoviedb.org"],
     remotePatterns: [
       {
         protocol: "https",

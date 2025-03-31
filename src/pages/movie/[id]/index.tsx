@@ -1,14 +1,25 @@
 import Image from "next/image";
 import globalStyle from "../../../components/layout/global-layout.module.css";
 import style from "./[id].module.css";
-import { InferGetServerSidePropsType } from "next";
-import { getMovieDetailProps } from "@/lib/get-movie-detail-props";
+import { InferGetStaticPropsType } from "next";
+import {
+  getMovieDetailProps,
+  getStaticPaths,
+} from "@/lib/get-movie-detail-props";
+import { useRouter } from "next/router";
 
-export const getServerSideProps = getMovieDetailProps;
+export { getStaticPaths };
+export const getStaticProps = getMovieDetailProps;
 
 export default function Page({
   movie,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { isFallback } = useRouter();
+
+  // Loading 처리
+  if (isFallback)
+    return <div className={globalStyle.empty}>로딩 중 입니다...!</div>;
+
   if (!movie)
     return (
       <h3 className={globalStyle.empty}>
