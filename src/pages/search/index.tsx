@@ -3,35 +3,31 @@ import { ReactNode, useEffect, useState } from "react";
 import MoviesListItem from "@/components/MoviesListItem";
 import style from "../../components/movies-list.module.css";
 import globalStyle from "../../components/layout/global-layout.module.css";
-import { InferGetStaticPropsType } from "next";
-import { getSearchProps } from "@/lib/get-search-props";
 import { useRouter } from "next/router";
-import { searchMovies } from "@/utils/search-movies";
 import { MovieData } from "@/types";
+import fetchMovies from "@/lib/fetch-movies";
 
-export const getStaticProps = getSearchProps;
-
-export default function Page({
-  movies,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Page() {
   const { query } = useRouter();
   const q = query.q as string;
-  const [filteredMovies, setFilteredMovies] = useState<MovieData[]>([]);
+  const [movies, setMovies] = useState<MovieData[]>([]);
+
+  const fetchSearchResult = async () => {
+    const data = await fetchMovies(q);
+    setMovies(data);
+  };
 
   useEffect(() => {
     if (q) {
-      const result = searchMovies(movies, q);
-      setFilteredMovies(result);
-    } else {
-      setFilteredMovies([]);
+      fetchSearchResult();
     }
-  }, [q, movies]);
+  }, [q]);
 
   return (
     <div className={globalStyle.container}>
-      {filteredMovies.length > 0 ? (
+      {movies.length > 0 ? (
         <ul className={style.recommend_list}>
-          {filteredMovies.map((item) => (
+          {movies.map((item) => (
             <MoviesListItem key={item.id} item={item} />
           ))}
         </ul>
