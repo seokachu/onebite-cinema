@@ -7,6 +7,7 @@ import {
   getStaticPaths,
 } from "@/lib/get-movie-detail-props";
 import { useRouter } from "next/router";
+import Meta from "@/components/Meta";
 
 export { getStaticPaths };
 export const getStaticProps = getMovieDetailProps;
@@ -14,7 +15,7 @@ export const getStaticProps = getMovieDetailProps;
 export default function Page({
   movie,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { isFallback } = useRouter();
+  const { isFallback, query } = useRouter();
 
   // Loading 처리
   if (isFallback)
@@ -38,27 +39,39 @@ export default function Page({
     description,
   } = movie;
 
+  //NOTE - meta tag
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = `${baseUrl}/movies/${query.id}`;
+
   return (
-    <section className={style.container}>
-      <div
-        className={style.img_inner}
-        style={{ backgroundImage: `url('${posterImgUrl}')` }}
-      >
-        <Image src={posterImgUrl} alt={title} width={300} height={450} />
-      </div>
-      <div className={style.movie_info}>
-        <h2 className={style.title}>{title}</h2>
-        <ul className={style.info_list}>
-          <li>{releaseDate}</li>
-          <li>{genres.join(", ")}</li>
-          <li>{runtime}분</li>
-        </ul>
-        <p className={style.company}>{company}</p>
-      </div>
-      <div className={style.movie_description}>
-        {subTitle && <h3>&ldquo;{subTitle}&rdquo;</h3>}
-        <p>{description}</p>
-      </div>
-    </section>
+    <>
+      <Meta
+        title={`한입 시네마 - ${title}`}
+        description={description}
+        image={posterImgUrl}
+        url={url}
+      />
+      <section className={style.container}>
+        <div
+          className={style.img_inner}
+          style={{ backgroundImage: `url('${posterImgUrl}')` }}
+        >
+          <Image src={posterImgUrl} alt={title} width={300} height={450} />
+        </div>
+        <div className={style.movie_info}>
+          <h2 className={style.title}>{title}</h2>
+          <ul className={style.info_list}>
+            <li>{releaseDate}</li>
+            <li>{genres.join(", ")}</li>
+            <li>{runtime}분</li>
+          </ul>
+          <p className={style.company}>{company}</p>
+        </div>
+        <div className={style.movie_description}>
+          {subTitle && <h3>&ldquo;{subTitle}&rdquo;</h3>}
+          <p>{description}</p>
+        </div>
+      </section>
+    </>
   );
 }
