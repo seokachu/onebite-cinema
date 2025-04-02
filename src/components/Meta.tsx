@@ -11,7 +11,7 @@ export default function Meta({
   title = "한입 시네마",
   description = "한입 시네마에 등록된 영화들을 만나보세요.",
   image = "/thumbnail.png",
-  url = "http://localhost:3000",
+  url = `${process.env.NEXT_PUBLIC_BASE_URL}`,
 }: MetaProps) {
   return (
     <Head>
