@@ -1,13 +1,12 @@
 import { GetStaticPropsContext } from "next";
 import fetchOneMovie from "./fetch-one-movies";
+import fetchMovies from "./fetch-movies";
 
-export const getStaticPaths = () => {
+export const getStaticPaths = async () => {
+  const movies = await fetchMovies();
+  const paths = movies.map((item) => ({ params: { id: String(item.id) } }));
   return {
-    paths: [
-      { params: { id: "1" } },
-      { params: { id: "2" } },
-      { params: { id: "3" } },
-    ],
+    paths,
     fallback: true,
   };
 };

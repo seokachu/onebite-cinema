@@ -12,5 +12,6 @@ export const getHomePageProps = async () => {
       allMovies,
       recoMovies,
     },
+    revalidate: 60,
   };
 };

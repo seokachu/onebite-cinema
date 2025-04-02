@@ -4,8 +4,8 @@ import MoviesListItem from "@/components/MoviesListItem";
 import style from "../../components/movies-list.module.css";
 import globalStyle from "../../components/layout/global-layout.module.css";
 import { useRouter } from "next/router";
-import { MovieData } from "@/types";
 import fetchMovies from "@/lib/fetch-movies";
+import type { MovieData } from "@/types";
 
 export default function Page() {
   const { query } = useRouter();
