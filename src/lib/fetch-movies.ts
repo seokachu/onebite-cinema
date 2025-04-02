@@ -1,7 +1,7 @@
 import type { MovieData } from "@/types";
 
 export default async function fetchMovies(q?: string): Promise<MovieData[]> {
-  let url = `http://localhost:12345/movie`;
+  let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/movie`;
 
   //NOTE - 검색 부분 SSG 방식에서는 필요없으나, 일단 코드 변경하지 않음
   if (q) {
