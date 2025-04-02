@@ -26,7 +26,6 @@ export default function Page() {
 
   //NOTE - meta tag
   const description = movies[0]?.description;
-  const image = movies[0]?.posterImgUrl;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}/search?q=${encodeURIComponent(q || "")}`;
 
@@ -35,7 +34,6 @@ export default function Page() {
       <Meta
         title={`한입 시네마 - 검색 결과 : ${q}`}
         description={description}
-        image={image}
         url={url}
       />
       <div className={globalStyle.container}>
